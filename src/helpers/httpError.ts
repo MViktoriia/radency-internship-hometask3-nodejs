@@ -6,7 +6,7 @@ const messages = {
     409: "Conflict"
 }
 
-interface ErrorWithStatus extends Error {
+export interface ErrorWithStatus extends Error {
     status?: number;
 }
 

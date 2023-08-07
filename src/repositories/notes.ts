@@ -74,7 +74,8 @@ const addNote = async ({name, created, category, content, archived}: {name: stri
     notes.push(newNote);
     await updateNotes(notes);
     return newNote;
-}
+};
+
 
 const removeNote = async (noteId: string) => {
     const notes = await allNotes();
@@ -88,7 +89,8 @@ const removeNote = async (noteId: string) => {
     return result;
 };
 
-const updateNote = async (id: string, data:{name: string, created: string, category: string, content: string, archived: boolean}) => {
+
+const updateNote = async (id: string, {name, created, category, content, archived}:{name: string, created: string, category: string, content: string, archived: boolean}) => {
 
     const notes = await allNotes();
     const index = notes.findIndex(item => item.id === id);
@@ -97,20 +99,28 @@ const updateNote = async (id: string, data:{name: string, created: string, categ
         return null;
     };
 
-    notes[index] = { id, ...data };
+    notes[index] = { id, name, created, category, content, archived };
     await updateNotes(notes);
 
     return notes[index];
-}
+};
 
+const updateNoteStatus = async (id: string, {archived}:{archived:boolean}) => {
 
+    const notes = await allNotes();
+    const noteToUpdate = notes.find(item => item.id === id);
 
-export {allNotes,
-     getNoteById,
-     getNotesAggregatedData,
-     removeNote,
-     addNote,
-     updateNote,
+    if (!noteToUpdate) {
+        return null;
     };
+
+    noteToUpdate.archived = archived;
+    await updateNotes(notes);
+
+    return noteToUpdate;
+};
+
+
+export {allNotes, getNoteById, getNotesAggregatedData, removeNote, addNote, updateNote, updateNoteStatus};
 
 
