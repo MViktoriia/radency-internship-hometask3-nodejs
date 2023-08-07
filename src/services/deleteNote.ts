@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
-import HttpError from "helpers/httpError";
-import { removeNote } from "repositories/notes";
+import HttpError from "../helpers/httpError";
+import { removeNote } from "../repositories/notes";
 
-export const deleteNote = async(req:Request, res:Response, next: NextFunction) => {
+const deleteNote = async(req:Request, res:Response, next: NextFunction) => {
     try {
         const {id} = req.params;
         const result = await removeNote(id);
@@ -18,3 +18,5 @@ export const deleteNote = async(req:Request, res:Response, next: NextFunction) =
     }
 
 };
+
+export default deleteNote;

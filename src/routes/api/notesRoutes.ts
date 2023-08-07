@@ -1,5 +1,12 @@
-import express, {Express, NextFunction, Request, Response} from "express";
-import  {addNewNote, deleteNote, editNote, getAllNotes, getById, getSummaryByCategories, updateArcivedStatus }  from "services";
+import express from "express";
+import addNewNote from "../../services/addNewNote";
+import deleteNote from "../../services/deleteNote";
+import editNote from "../../services/editNote";
+import getAllNotes from "../../services/getAllNotes";
+import getById from "../../services/getById";
+import getSummaryByCategories from "../../services/getSummaryByCategories";
+import updateArcivedStatus from "../../services/updateStatus";
+
 
 
 const router = express.Router();

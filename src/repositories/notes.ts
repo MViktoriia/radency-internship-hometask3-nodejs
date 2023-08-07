@@ -46,7 +46,7 @@ const getNotesAggregatedData = async () => {
         totalArchiverNotes: number;
     }
 
-    let summary: aggregatedDataByCategory[] = [];
+    const summary: aggregatedDataByCategory[] = [];
 
     uniqueCategories.forEach((item)=> {
         const totalActive = notes.filter((note)=> note.category === item && note.archived === false).length;

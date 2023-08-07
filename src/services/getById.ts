@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
-import HttpError from "helpers/httpError";
-import {getNoteById} from "repositories/notes";
+import HttpError from "../helpers/httpError";
+import {getNoteById} from "../repositories/notes";
 
-export const getById = async(req: Request, res: Response, next: NextFunction) => {
+const getById = async(req: Request, res: Response, next: NextFunction) => {
     try {
         const {id} = req.params;
         const result = await getNoteById(id);
@@ -14,4 +14,6 @@ export const getById = async(req: Request, res: Response, next: NextFunction) =>
     catch (error) {
         next(error);
     }
-}
+};
+
+export default getById;

@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
-import {allNotes} from "repositories/notes";
+import {allNotes} from "../repositories/notes";
 
-export const getAllNotes = async(req: Request, res: Response, next: NextFunction) => {
+const getAllNotes = async(req: Request, res: Response, next: NextFunction) => {
     try {
         const result = await allNotes();
         res.json(result);
@@ -9,4 +9,6 @@ export const getAllNotes = async(req: Request, res: Response, next: NextFunction
     catch (error) {
         next(error);
     }
-}
+};
+
+export default getAllNotes;

@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from "express";
-import { updateNote } from "repositories/notes";
-import { addNoteSchema } from "schemas/notesSchemas";
-import HttpError from "helpers/httpError";
+import { updateNote } from "../repositories/notes";
+import { addNoteSchema } from "../schemas/notesSchemas";
+import HttpError from "../helpers/httpError";
 
 
-export const editNote = async(req: Request, res: Response, next: NextFunction) => {
+const editNote = async(req: Request, res: Response, next: NextFunction) => {
     try {
 
         const {error} = addNoteSchema.validate(req.body);
@@ -26,4 +26,6 @@ export const editNote = async(req: Request, res: Response, next: NextFunction) =
         next(error);
     }    
 
-}
+};
+
+export default editNote;

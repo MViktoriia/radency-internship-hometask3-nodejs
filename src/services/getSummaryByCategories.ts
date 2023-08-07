@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
-import {getNotesAggregatedData} from "repositories/notes";
+import {getNotesAggregatedData} from "../repositories/notes";
 
-export const getSummaryByCategories = async(req: Request, res: Response, next: NextFunction) => {
+const getSummaryByCategories = async(req: Request, res: Response, next: NextFunction) => {
     try {
         const result = await getNotesAggregatedData();
         res.json(result);
@@ -10,3 +10,5 @@ export const getSummaryByCategories = async(req: Request, res: Response, next: N
         next(error);
     }
 }
+
+export default getSummaryByCategories;
