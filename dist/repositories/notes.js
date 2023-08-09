@@ -48,7 +48,7 @@ const getNotesAggregatedData = () => __awaiter(void 0, void 0, void 0, function*
     return summary;
 });
 exports.getNotesAggregatedData = getNotesAggregatedData;
-const addNote = ({ name, created, category, content, archived }) => __awaiter(void 0, void 0, void 0, function* () {
+const addNote = ({ name, created, category, content }) => __awaiter(void 0, void 0, void 0, function* () {
     const notes = yield allNotes();
     const newNote = {
         id: (0, nanoid_1.nanoid)(),
@@ -56,7 +56,7 @@ const addNote = ({ name, created, category, content, archived }) => __awaiter(vo
         created,
         category,
         content,
-        archived
+        archived: false,
     };
     notes.push(newNote);
     yield updateNotes(notes);
@@ -74,14 +74,15 @@ const removeNote = (noteId) => __awaiter(void 0, void 0, void 0, function* () {
     return result;
 });
 exports.removeNote = removeNote;
-const updateNote = (id, { name, created, category, content, archived }) => __awaiter(void 0, void 0, void 0, function* () {
+const updateNote = (id, { name, category, content, archived }) => __awaiter(void 0, void 0, void 0, function* () {
     const notes = yield allNotes();
     const index = notes.findIndex(item => item.id === id);
     if (index === -1) {
         return null;
     }
     ;
-    notes[index] = { id, name, created, category, content, archived };
+    const noteToEdit = notes[index];
+    notes[index] = Object.assign(Object.assign({}, noteToEdit), { name, category, content, archived });
     yield updateNotes(notes);
     return notes[index];
 });

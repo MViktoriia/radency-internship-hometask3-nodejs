@@ -1,13 +1,13 @@
 import { NextFunction, Request, Response } from "express";
 import { updateNote } from "../repositories/notes";
-import { addNoteSchema } from "../schemas/notesSchemas";
+import { updateNoteSchema } from "../schemas/notesSchemas";
 import HttpError from "../helpers/httpError";
 
 
 const editNote = async(req: Request, res: Response, next: NextFunction) => {
     try {
 
-        const {error} = addNoteSchema.validate(req.body);
+        const {error} = updateNoteSchema.validate(req.body);
         if (error) {
             throw HttpError(400, error.message);
         }

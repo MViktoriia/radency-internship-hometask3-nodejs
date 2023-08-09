@@ -17,7 +17,7 @@ const notesSchemas_1 = require("../schemas/notesSchemas");
 const httpError_1 = __importDefault(require("../helpers/httpError"));
 const editNote = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { error } = notesSchemas_1.addNoteSchema.validate(req.body);
+        const { error } = notesSchemas_1.updateNoteSchema.validate(req.body);
         if (error) {
             throw (0, httpError_1.default)(400, error.message);
         }
